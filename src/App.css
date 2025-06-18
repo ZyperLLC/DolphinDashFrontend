@@ -1,0 +1,205 @@
+/* -------------------- */
+/* 🌐 Global Styles     */
+/* -------------------- */
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f2f2f2;
+}
+
+/* -------------------- */
+/* 📦 Layout Containers */
+/* -------------------- */
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  background: #2c2c54;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  background-color: #ddd;
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.footer a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* -------------------- */
+/* 📱 Bottom Navigation */
+/* -------------------- */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: white;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.nav-item {
+  text-align: center;
+  font-size: 12px;
+  color: #555;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-item.active {
+  color: #00ccff;
+}
+
+/* ---------------------- */
+/* 🧩 Game / Stake Pages  */
+/* ---------------------- */
+
+.game {
+  padding-bottom: 80px; /* reserve space for bottom nav */
+  text-align: center;
+}
+
+.stake {
+  padding: 20px;
+  padding-bottom: 70px; /* reserve space for bottom nav */
+  background-color: #f2f2f2;
+  color: white;
+  min-height: 100vh;
+}
+
+/* ------------------ */
+/* 🎴 NFT Card Layout */
+/* ------------------ */
+
+.nft-card-container {
+  background: #f0f4ff;
+  border-radius: 16px;
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.nft-title {
+  text-align: left;
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.nft-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.nft-card img {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid gold;
+}
+
+/* ------------------ */
+/* 🔢 Grid Components */
+/* ------------------ */
+
+.grid-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 12px;
+  padding: 13px;
+}
+
+.grid-item {
+  height: 70px;
+  width: 70px;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.grid-item:hover {
+  background-color: #f0f8ff;
+}
+
+.grid-item.selected {
+  background-color: #d0f4ff;
+  border-color: #00aaff;
+}
+
+.grid-number {
+  color: #333;
+}
+
+/* -------------------- */
+/* 👛 Wallet Button     */
+/* -------------------- */
+
+.wallet-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.wallet-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* -------------------- */
+/* 🖼️ Media / Banner     */
+/* -------------------- */
+
+.banner {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
