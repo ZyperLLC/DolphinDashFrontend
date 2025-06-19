@@ -1,7 +1,6 @@
 {
     "name": "Dolphin Dash",
-    "url": "http://localhost:5173",
-    "iconUrl": "https://raw.githubusercontent.com/ZyperLLC/DolphinDashFrontend/main/public/logo.png",
-    "manifestUrl": "http://localhost:5173/tonconnect-manifest.json",
-    "network": "testnet"
-  }
+    "url": "https://dolphindash.netlify.app/",
+    "iconUrl": "https://gateway.pinata.cloud/ipfs/bafybeid6zkfehmrjafeydhjgbfefdxgtdxp73binakjprls6glvzojrwym",
+    "manifestUrl": "https://gateway.pinata.cloud/ipfs/bafkreiam4tqqodcvzmm6x73mfyoe2sveji3nk5d6vkixkt7gvd35xd7iai"
+}
