@@ -1,0 +1,7 @@
+{
+    "name": "Dolphin Dash",
+    "url": "http://localhost:5173",
+    "iconUrl": "https://raw.githubusercontent.com/ZyperLLC/DolphinDashFrontend/main/public/logo.png",
+    "manifestUrl": "http://localhost:5173/tonconnect-manifest.json",
+    "network": "testnet"
+  }

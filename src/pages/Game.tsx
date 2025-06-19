@@ -144,9 +144,7 @@ const Game: React.FC = () => {
           <span>Friends</span>
         </div>
         <div
-          style={styles.navItem}
-          onClick={() => alert("Profile screen coming soon")}
-        >
+          style={styles.navItem} onClick={() => navigate("/Profile")}>
           <UserCircle2 size={20} />
           <span>Profile</span>
         </div>

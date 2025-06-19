@@ -1,4 +1,5 @@
 import React from "react";
+import { TonConnectButton } from "@tonconnect/ui-react";
 
 interface Props {
   onClose: () => void;
@@ -24,10 +25,10 @@ const DolphinPopup: React.FC<Props> = ({ onClose }) => {
           <li>🔗 Connect your wallet to begin your journey.</li>
         </ul>
 
-        {/* CTA Button */}
-        <button onClick={onClose} style={buttonStyle}>
-          Connect Wallet
-        </button>
+        {/* TON Connect Wallet Button */}
+        <div style={walletButtonContainer}>
+          <TonConnectButton />
+        </div>
       </div>
     </div>
   );
@@ -87,15 +88,9 @@ const listStyle: React.CSSProperties = {
   alignItems: "center",
 };
 
-const buttonStyle: React.CSSProperties = {
-  padding: "10px 24px",
-  borderRadius: "25px",
-  backgroundColor: "#007bff",
-  color: "#fff",
-  border: "none",
-  fontSize: "1rem",
-  cursor: "pointer",
-  transition: "background-color 0.3s",
+const walletButtonContainer: React.CSSProperties = {
+  display: "flex",
+  justifyContent: "center",
 };
 
 export default DolphinPopup;
