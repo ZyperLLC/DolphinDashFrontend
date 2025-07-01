@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Gamepad2, CreditCard, Smile, UserCircle2 } from "lucide-react";
 import topImage from "../assets/logodolphin.jpg";
 import { useInviteFriend } from "../hooks/useInvite";
-import { useUserContext } from "../context/UserContext";
+import { useUserContext } from "../context/user-context-utils";
 import { generateInviteLink, copyToClipboard, validateInviteCode } from "../utils/helpers";
 import { toast } from "react-toastify";
 
@@ -19,10 +19,11 @@ const Invite: React.FC = () => {
     const link = generateInviteLink(telegramId);
     await copyToClipboard(link);
     toast.success("Invite link copied!");
-  } catch (error) {
+  } catch {
     toast.error("Failed to copy link.");
   }
 };
+
 
 const handleSendCode = async () => {
   const validCode = validateInviteCode(inviteCode);

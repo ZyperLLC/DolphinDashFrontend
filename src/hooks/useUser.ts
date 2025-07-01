@@ -12,9 +12,13 @@ export function useRegisterUser() {
       setLoading(true);
       setError(null);
       const data = await userApi.registerUser(userData); // must return User object
-      setUser(data); // ✅ correct usage
-    } catch (err: any) {
-      setError(err.message || 'Registration failed');
+      setUser(data);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Registration failed');
+      }
     } finally {
       setLoading(false);
     }
@@ -33,9 +37,13 @@ export function useGetUser() {
       setLoading(true);
       setError(null);
       const data = await userApi.getUser(telegramId); // must return User object
-      setUser(data); // ✅ correct usage
-    } catch (err: any) {
-      setError(err.message || 'Failed to fetch user');
+      setUser(data);
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Failed to fetch user');
+      }
     } finally {
       setLoading(false);
     }

@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { getGameHistory, getStakedNFTs, getUser } from '../api/userApi';
-import { useUserContext } from '../context/UserContext';
+import { useUserContext } from '../context/user-context-utils';
 import type { User, Bet, NFT } from '../types';
 
 export const useProfile = () => {

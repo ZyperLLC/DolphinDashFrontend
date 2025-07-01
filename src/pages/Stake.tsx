@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStakeNFT } from "../hooks/useStake";
-import { useUserContext } from "../context/UserContext";
+import { useUserContext } from "../context/user-context-utils";
 import { getStakedNFTs } from "../api/userApi";
 import { toast } from "react-toastify";
 import topImage from "../assets/logodolphin.jpg";

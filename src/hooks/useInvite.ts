@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { sendInvite } from '../api/userApi';
-import { useUserContext } from '../context/UserContext';
+import { useUserContext } from '../context/user-context-utils';
 import { toast } from 'react-toastify';
 
 export const useInviteFriend = () => {

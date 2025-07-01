@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useUserContext } from "../context/UserContext";
+import { useUserContext } from "../context/user-context-utils";
 import { sendInvite } from '../api/userApi';
 import topImage from "../assets/logodolphin.jpg";
 import {
@@ -31,7 +31,7 @@ const Game: React.FC = () => {
       await navigator.clipboard.writeText(inputValue);
       await sendInvite(telegramId, inputValue);
       toast.success("Invite copied and saved!");
-    } catch (error) {
+    } catch {
       toast.error("Failed to copy or save invite.");
     }
   };
@@ -194,10 +194,7 @@ const Game: React.FC = () => {
           <Smile size={20} />
           <span>Friends</span>
         </div>
-        <div
-          style={styles.navItem}
-          onClick={() => navigate("/profile")}
-        >
+        <div style={styles.navItem} onClick={() => navigate("/profile")}>
           <UserCircle2 size={20} />
           <span>Profile</span>
         </div>

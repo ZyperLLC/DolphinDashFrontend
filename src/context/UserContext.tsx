@@ -1,15 +1,8 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+
+
+import { useState, type ReactNode } from 'react';
+import { UserContext, type UserContextType } from './user-context-utils';
 import type { User } from '../types';
-
-interface UserContextType {
-  user: User | null;
-  setUser: (user: User | null) => void;
-
-  // Optional shortcut access
-  telegramId?: string;
-}
-
-const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -17,7 +10,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const contextValue: UserContextType = {
     user,
     setUser,
-    telegramId: user?.telegramId, // convenience access
+    telegramId: user?.telegramId,
   };
 
   return (
@@ -25,13 +18,4 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </UserContext.Provider>
   );
-};
-
-// Hook to access the context
-export const useUserContext = (): UserContextType => {
-  const context = useContext(UserContext);
-  if (!context) {
-    throw new Error('useUserContext must be used within a UserProvider');
-  }
-  return context;
 };
