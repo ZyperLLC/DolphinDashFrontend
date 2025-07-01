@@ -2,7 +2,7 @@
 import React from 'react';
 import { useProfile } from '../hooks/useProfile';
 import crownImg from '../assets/crown.jpg';
-import dolphinImg from '../assets/dolphin.svg';
+import dolphinImg from '../assets/dolphin.jpg';
 import type { Bet, NFT } from '../types';
 
 const Profile: React.FC = () => {
