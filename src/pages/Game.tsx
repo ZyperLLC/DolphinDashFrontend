@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useUserContext } from "../context/UserContext";
+import { sendInvite } from '../api/userApi';
 import topImage from "../assets/logodolphin.jpg";
 import {
   Gamepad2,
@@ -9,84 +12,118 @@ import {
 } from "lucide-react";
 
 const Game: React.FC = () => {
-  // State to track selected card index (only one selectable at a time)
-  const [selected, setSelected] = useState<number | null>(null);
+  const [inputValue, setInputValue] = useState("");
   const navigate = useNavigate();
+  const { telegramId } = useUserContext();
 
-  // Simulates wallet connection
-  const handleConnectWallet = () => {
-    alert("Wallet connection flow triggered!");
+  const handleCopyAndSave = async () => {
+    if (!telegramId) {
+      toast.error("Please connect your wallet to invite.");
+      return;
+    }
+
+    if (inputValue.trim() === "") {
+      toast.warning("Input is empty. Please enter an invite message.");
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(inputValue);
+      await sendInvite(telegramId, inputValue);
+      toast.success("Invite copied and saved!");
+    } catch (error) {
+      toast.error("Failed to copy or save invite.");
+    }
   };
 
-  // Handles NFT card selection
-  const handleClick = (index: number) => {
-    setSelected(index);
-    alert(`You selected number ${index + 1}`);
-  };
+  const leaderboard = [
+    { username: "@bigtonwhale", reward: "3 123" },
+    { username: "@superwinner", reward: "1 532 345" },
+    { username: "@dolphinrush", reward: "22 432" },
+    { username: "@cooltontrader", reward: "234 153" },
+    { username: "@nftninja", reward: "23 421" },
+  ];
 
-  // Styles defined inline using an object
   const styles: { [key: string]: React.CSSProperties } = {
     container: {
-      maxWidth: 480,
+      maxWidth: 500,
       margin: "0 auto",
-      padding: 16,
+      paddingBottom: "80px",
       fontFamily: "sans-serif",
-      textAlign: "center",
     },
     banner: {
+      display: "block",
+      margin: "20px auto 10px auto",
       width: "100%",
-      marginBottom: 16,
-    },
-    walletButtonWrapper: {
-      display: "flex",
-      justifyContent: "center",
-      margin: "12px 0",
-    },
-    walletButton: {
-      background: "#007bff",
-      color: "white",
-      border: "none",
-      padding: "10px 16px",
-      borderRadius: 8,
-      fontWeight: "bold",
-      cursor: "pointer",
-    },
-    grid: {
-      display: "grid",
-      gridTemplateColumns: "repeat(4, 1fr)",
-      gap: 12,
-      marginTop: 16,
-    },
-    gridItem: {
-      backgroundColor: "#f5f5f5",
+      maxWidth: 400,
       borderRadius: 12,
-      height: 80,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontWeight: "bold",
-      fontSize: 18,
-      cursor: "pointer",
-      position: "relative",
-      boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-      transition: "transform 0.2s ease",
     },
-    selected: {
-      backgroundColor: "#d1ecf1",
-      border: "2px solid #17a2b8",
+    inviteCard: {
+      textAlign: "center",
+      margin: "20px",
+    },
+    input: {
+      padding: "10px",
+      width: "80%",
+      maxWidth: "400px",
+      fontSize: "16px",
+      borderRadius: "8px",
+      border: "1px solid #ccc",
+      marginBottom: "10px",
+    },
+    copyBtn: {
+      padding: "10px 20px",
+      fontSize: "16px",
+      backgroundColor: "#007bff",
+      color: "#fff",
+      border: "none",
+      borderRadius: "6px",
+      cursor: "pointer",
+    },
+    leaderboardContainer: {
+      background: "#f0f0f0",
+      padding: "20px",
+      borderRadius: "12px",
+      margin: "20px",
+      color: "#000",
+    },
+    leaderboardHeader: {
+      fontSize: "1.5rem",
+      marginBottom: "15px",
+      fontWeight: "bold",
+    },
+    leaderboardRowHeader: {
+      background: "#ccc",
+      borderRadius: "10px",
+      padding: "10px",
+      display: "flex",
+      justifyContent: "space-between",
+      fontWeight: "bold",
+    },
+    leaderboardRow: {
+      display: "flex",
+      justifyContent: "space-between",
+      padding: "10px",
+      fontSize: "14px",
     },
     bottomNav: {
+      position: "fixed",
+      bottom: 0,
+      left: 0,
+      right: 0,
+      backgroundColor: "#fff",
       display: "flex",
       justifyContent: "space-around",
+      alignItems: "center",
       padding: "12px 0",
       borderTop: "1px solid #ccc",
-      marginTop: 24,
+      boxShadow: "0 -2px 6px rgba(0,0,0,0.1)",
     },
     navItem: {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      fontSize: 12,
+      fontSize: "12px",
       color: "#444",
       cursor: "pointer",
     },
@@ -94,44 +131,58 @@ const Game: React.FC = () => {
 
   return (
     <div style={styles.container}>
-      {/* Top Banner */}
+      {/* 🔵 Top Banner */}
       <img src={topImage} alt="Dolphin Dash" style={styles.banner} />
 
-      {/* Heading */}
-      <h2>Pick Your Fighter</h2>
-      <p>
-        Place TON Bets On One Or More NFTs. If Your Symbol Hits, You Win With A Multiplier!
-      </p>
+      {/* 🟣 Invite a Friend */}
+      <div style={styles.inviteCard}>
+        <h2>Invite A Friend</h2>
+        <h4 style={{ marginTop: "10px", fontWeight: "normal" }}>
+          Connect Your Wallet to unlock Staking, Betting and Daily Prizes.
+        </h4>
 
-      {/* Wallet Connect Button */}
-      <div style={styles.walletButtonWrapper}>
-        <button style={styles.walletButton} onClick={handleConnectWallet}>
-          Connect Wallet
-        </button>
+        <div style={{ marginTop: "15px" }}>
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            style={styles.input}
+            placeholder="Enter your invite code or message"
+          />
+          <br />
+          <button style={styles.copyBtn} onClick={handleCopyAndSave}>
+            Copy & Save
+          </button>
+        </div>
       </div>
 
-      {/* Numbered NFT Grid (4x4 layout) */}
-      <div style={styles.grid}>
-        {Array.from({ length: 16 }).map((_, i) => (
+      {/* 🏆 Leaderboard */}
+      <div style={styles.leaderboardContainer}>
+        <h2 style={styles.leaderboardHeader}>🏆 Friends Leaderboard</h2>
+
+        <div style={styles.leaderboardRowHeader}>
+          <span>User name</span>
+          <span>Reward</span>
+        </div>
+
+        {leaderboard.map((item, index) => (
           <div
-            key={i}
+            key={index}
             style={{
-              ...styles.gridItem,
-              ...(selected === i ? styles.selected : {}),
+              ...styles.leaderboardRow,
+              borderBottom:
+                index !== leaderboard.length - 1 ? "1px solid #ccc" : "none",
             }}
-            onClick={() => handleClick(i)}
           >
-            {i + 1}
+            <span>{item.username}</span>
+            <span>{item.reward}</span>
           </div>
         ))}
       </div>
 
-      {/* Bottom Navigation */}
+      {/* 🔻 Bottom Navigation */}
       <div style={styles.bottomNav}>
-        <div
-          style={{ ...styles.navItem }}
-          onClick={() => navigate("/")}
-        >
+        <div style={styles.navItem} onClick={() => navigate("/")}>
           <Gamepad2 size={20} />
           <span>Game</span>
         </div>
@@ -144,7 +195,9 @@ const Game: React.FC = () => {
           <span>Friends</span>
         </div>
         <div
-          style={styles.navItem} onClick={() => navigate("/Profile")}>
+          style={styles.navItem}
+          onClick={() => navigate("/profile")}
+        >
           <UserCircle2 size={20} />
           <span>Profile</span>
         </div>
