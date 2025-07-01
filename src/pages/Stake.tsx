@@ -1,4 +1,3 @@
-// src/pages/Stake.tsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStakeNFT } from "../hooks/useStake";
@@ -10,7 +9,7 @@ import { Gamepad2, CreditCard, Smile, UserCircle2 } from "lucide-react";
 
 interface NFT {
   nftAddress: string;
-  // Add more metadata if available
+
 }
 
 const Stake: React.FC = () => {
