@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Reset and base styles */
+/* ========= Base Resets ========= */
 html, body {
   margin: 0;
   padding: 0;
@@ -15,7 +15,7 @@ html, body {
   min-height: 100%;
 }
 
-/* Logo styling */
+/* ========= Logo Styles ========= */
 .logo-container {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -66,7 +66,28 @@ html, body {
   border-radius: inherit;
 }
 
-/* Page container */
+
+/* ========= Floating Logo ========= */
+.animated-logo {
+  width: 250px;
+  margin-top: 2rem;
+  margin-bottom: 1.25rem;
+  display: block;
+  margin-inline: auto;
+  padding-top: 60px;
+  animation: floatUpDown 2.5s ease-in-out infinite;
+}
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* ========= Home Page ========= */
 .page {
   min-height: 100vh;
   padding-bottom: 80px;
@@ -78,7 +99,6 @@ html, body {
   text-align: center;
 }
 
-/* Floating logo animation */
 .page-logo {
   margin: 2rem auto 1rem;
   width: 180px;
@@ -94,7 +114,6 @@ html, body {
   }
 }
 
-/* Transparent card */
 .combined-card {
   background: rgba(0, 0, 50, 0.088);
   padding: 1rem 1.5rem;
@@ -113,13 +132,13 @@ html, body {
 
 .card-title {
   font-size: 1.5rem;
-  margin-bottom: 2rem; /* Increased spacing between heading and grid */
+  margin-bottom: 2rem;
   color: white;
   text-align: left;
   padding-left: 0.25rem;
 }
 
-/* Timer styles */
+/* ========= Timer Component ========= */
 .timer-box {
   background: rgba(255, 255, 255, 0.08);
   padding: 1rem;
@@ -150,7 +169,7 @@ html, body {
   color: #eee;
 }
 
-/* Dolphin header */
+/* ========= Dolphin Grid ========= */
 .dolphin-header {
   text-align: left;
   font-size: 1.2rem;
@@ -161,7 +180,6 @@ html, body {
   color: #fff;
 }
 
-/* Dolphin grid */
 .dolphin-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -185,7 +203,7 @@ html, body {
   border-color: #fff;
 }
 
-/* Fixed navbar */
+/* ========= Bottom Navbar ========= */
 .navbar {
   position: fixed;
   bottom: 0;
@@ -216,7 +234,7 @@ html, body {
   color: #fff;
 }
 
-/* Welcome popup */
+/* ========= Welcome Popup ========= */
 .welcome-popup-image-bg {
   position: fixed;
   top: 50%;
@@ -231,7 +249,7 @@ html, body {
   border-radius: 20px;
   overflow: hidden;
   color: #fff;
-  z-index: 9999;
+  z-index: 9990;
   animation: popupFade 0.4s ease, popupGrow 0.4s ease;
   background-color: transparent;
   box-shadow: none;
@@ -290,32 +308,13 @@ html, body {
   z-index: 10;
 }
 
-/* Responsive styles */
-@media (max-width: 600px) {
-  .page-logo {
-    width: 70%;
-  }
-
-  .dolphin-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .combined-card {
-    padding: 1rem;
-  }
-
-  .progress-bar {
-    height: 14px;
-  }
-
-  .progress-oval {
-    width: 80%;
-    height: 30px;
-  }
+/* ========= TonConnect Modal Priority ========= */
+#ton-connect-modal {
+  position: fixed !important;
+  z-index: 99999 !important;
 }
 
-/* ===== Stake Page Specific Styles ===== */
-
+/* ========= Stake Page ========= */
 .stake-page-container {
   color: white;
   padding: 0 1rem;
@@ -389,13 +388,11 @@ html, body {
   border-color: #fff;
 }
 
-/* No box shadow for stake header */
 .stake-card {
   color: white;
   box-shadow: none;
 }
 
-/* Square box shadow container */
 .staking-grid-card {
   background: rgba(0, 0, 50, 0.088);
   padding: 1.5rem;
@@ -408,56 +405,7 @@ html, body {
   box-sizing: border-box;
 }
 
-/* Ensure TonConnect modal is on top of all overlays */
-#ton-connect-modal {
-  position: fixed !important;
-  z-index: 99999 !important;
-}
-
-/* Lower the popup's z-index slightly so modal appears above */
-.welcome-popup-image-bg {
-  z-index: 9990; /* was 9999 */
-}
-
-/* === Animated Floating Logo === */
-.animated-logo {
-  width: 200px;
-  margin: 0 auto;
-  display: block;
-  margin: 20px auto 30px;
-  padding-top: 80px;
-  animation: floatUpDown 2.5s ease-in-out infinite;
-}
-
-@keyframes floatUpDown {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
-/* ===== Profile Page Custom Styles ===== */
-
-.animated-logo {
-  width: 500px;
-  margin: 0 auto;
-  display: block;
-  padding-top: 60px;
-  margin-bottom: 2rem; /* Adds space below the logo */
-  animation: floatUpDown 2.5s ease-in-out infinite;
-}
-
-@keyframes floatUpDown {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
+/* ========= Profile Page ========= */
 .profile-heading {
   color: white;
   font-size: 2rem;
@@ -479,64 +427,6 @@ html, body {
   margin-top: 1.5rem;
   background: linear-gradient(90deg, #f72585, #7209b7);
   color: white;
-  padding: 0.75rem 5.5rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  display: block;
-  margin-inline: auto;
-  transition: transform 0.2s ease;
-}
-
-.connect-wallet-button:hover {
-  transform: scale(1.05);
-}
-
-/* Transparent dynamic card */
-.profile-card {
-  background: rgba(255, 255, 255, 0);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 1.5rem 1.25rem;
-  margin: 1rem auto;
-  max-width: 500px;
-  min-height: 100px; /* optional for minimum height */
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
-/* Logo styling */
-.animated-logo {
-  width: 250px;
-  margin-top: 2rem;
-  margin-bottom: 1.25rem;
-}
-
-/* Headings and Button */
-.profile-heading {
-  color: white;
-  font-size: 2rem;
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-.profile-subheading {
-  color: white;
-  font-size: 1rem;
-  line-height: 1.4;
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-
-.connect-wallet-button {
-  margin-top: 1.5rem;
-  background: linear-gradient(90deg, #f72585, #7209b7);
-  color: white;
   padding: 0.75rem 4.5rem;
   font-size: 1rem;
   border: none;
@@ -551,23 +441,35 @@ html, body {
   transform: scale(1.05);
 }
 
-/* Responsive tweaks */
-@media (max-width: 480px) {
-  .profile-heading {
-    font-size: 1.6rem;
-  }
-
-  .profile-subheading {
-    font-size: 0.95rem;
-  }
-
-  .connect-wallet-button {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.95rem;
-  }
+.profile-card {
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1.5rem 1.25rem;
+  margin: 1rem auto;
+  max-width: 500px;
+  min-height: 100px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
-/* Staked NFT heading */
+.section-box {
+  background: rgba(255, 255, 255, 0);
+  border-radius: 16px;
+  padding: 1.5rem 1.2rem;
+  margin: 1rem auto;
+  max-width: 500px;
+  min-height: 100px;
+  width: 80%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+/* ========= Profile Page > Staked NFTs ========= */
 .staked-heading {
   color: white;
   text-align: left;
@@ -628,15 +530,15 @@ html, body {
   color: white;
   position: absolute;
   top: 12px;
-  right: 16px; /* 🔁 increased from 4px to add spacing from the text */
+  right: 16px;
 }
 
 .result-tag.win {
-  background-color: #22c55e; /* Green */
+  background-color: #22c55e;
 }
 
 .result-tag.lose {
-  background-color: #ef4444; /* Red */
+  background-color: #ef4444;
 }
 
 .history-card {
@@ -645,18 +547,7 @@ html, body {
   justify-content: space-between;
 }
 
-.section-box {
-  background: rgba(255, 255, 255, 0);
-  border-radius: 16px;
-  padding: 1.5rem 1.2rem;
-  margin: 1rem auto;
-  max-width: 500px;
-  min-height: 100px; /* optional for minimum height */
-  width: 80%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-}
-
+/* ========= Invite / Referral Page ========= */
 .invite-container {
   background-color: rgba(255, 255, 255, 0.08);
   padding: 2rem;
@@ -718,12 +609,14 @@ html, body {
   box-sizing: border-box;
 }
 
+
+
 .invite-copy-btn:hover {
   background-color: #e0e0e0;
   color: #ffffff;
 }
 
-/* ======= Friends Leaderboard Styles ======= */
+/* ========= Friends Leaderboard ========= */
 .leaderboard-container {
   background-color: rgba(255, 255, 255, 0.08);
   padding: 2rem;
@@ -766,4 +659,53 @@ html, body {
 
 .leaderboard-row {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ========= Mobile Responsiveness ========= */
+@media (max-width: 600px) {
+  .page-logo {
+    width: 70%;
+  }
+
+  .dolphin-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .combined-card {
+    padding: 1rem;
+  }
+
+  .progress-bar {
+    height: 14px;
+  }
+
+  .progress-oval {
+    width: 80%;
+    height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-heading {
+    font-size: 1.6rem;
+  }
+
+  .profile-subheading {
+    font-size: 0.95rem;
+  }
+
+  .connect-wallet-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}
+
+.main-content-wrapper {
+  transition: filter 0.3s ease;
+}
+
+.blurred {
+  filter: blur(5px);
+  pointer-events: none; /* Optional: block clicks while blurred */
+  user-select: none;
 }

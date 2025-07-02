@@ -6,32 +6,48 @@ import { useEffect } from 'react';
 export default function WelcomePopup({ onClose }: { onClose: () => void }) {
   const [tonConnectUI] = useTonConnectUI();
 
+  const moveModalToTop = () => {
+    const modal = document.getElementById('ton-connect-modal');
+    if (modal) {
+      // Force modal to topmost layer
+      modal.style.zIndex = '9999999';
+      modal.style.position = 'fixed';
+      modal.style.top = '0';
+      modal.style.left = '0';
+      modal.style.right = '0';
+      modal.style.bottom = '0';
+      modal.style.pointerEvents = 'auto';
+
+      // Ensure it's directly under body (if not already)
+      if (modal.parentElement !== document.body) {
+        document.body.appendChild(modal);
+      }
+    }
+  };
+
   const handleConnectWallet = () => {
     tonConnectUI.openModal();
 
-    // Wait a bit and move the modal to the end of the body
-    setTimeout(() => {
+    // Retry until modal appears and is elevated
+    let attempts = 0;
+    const interval = setInterval(() => {
       const modal = document.getElementById('ton-connect-modal');
-      if (modal) {
-        document.body.appendChild(modal); // move to end of <body>
-        modal.style.zIndex = '99999';
-        modal.style.position = 'fixed';
+      if (modal || attempts >= 20) {
+        moveModalToTop();
+        clearInterval(interval);
       }
-    }, 50);
+      attempts++;
+    }, 100);
   };
 
   useEffect(() => {
-    const modal = document.getElementById('ton-connect-modal');
-    if (modal) {
-      modal.style.zIndex = '99999';
-      modal.style.position = 'fixed';
-    }
+    moveModalToTop(); // Apply fix if modal already exists
   }, []);
 
   return (
     <div
       className="welcome-popup-image-bg"
-      style={{ backgroundImage: `url(${popupImage})`, zIndex: 9990 }} // slightly reduced
+      style={{ backgroundImage: `url(${popupImage})`, zIndex: 9990 }}
     >
       <button className="close-btn" onClick={onClose}>
         <X size={22} />
