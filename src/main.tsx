@@ -2,17 +2,21 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App";
-
-// Import TonConnect UI provider
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { UserProvider } from "./context/UserContext";
 
-// Manifest URL for TON connection — replace with your actual hosted JSON file
-const manifestUrl = "https://yourdomain.com/tonconnect-manifest.json"; // ✅ Replace with real URL
+// Use local dev manifest served from public/
+const manifestUrl = "http://localhost:5173/tonconnect-manifest.json";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <TonConnectUIProvider manifestUrl={manifestUrl}>
-      <App />
-    </TonConnectUIProvider>
+    <UserProvider>
+      <TonConnectUIProvider manifestUrl={manifestUrl}>
+        <App />
+        <ToastContainer position="top-center" />
+      </TonConnectUIProvider>
+    </UserProvider>
   </StrictMode>
 );
