@@ -4,7 +4,7 @@ import "./index.css";
 
 import Game from "./pages/Game";
 import Stake from "./pages/Stake";
-import Friends from "./pages/Friends"; // ✅ New import
+import Friends from "./pages/Friends"; 
 import Profile from "./pages/Profile";
 import DolphinPopup from "./components/DolphinPopup";
 import SplashScreen from "./components/SplashScreen";
@@ -32,7 +32,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Game />} />
             <Route path="/stake" element={<Stake />} />
-            <Route path="/friends" element={<Friends />} /> 
+            <Route path="/friends" element={<Friends />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>
         </Router>
