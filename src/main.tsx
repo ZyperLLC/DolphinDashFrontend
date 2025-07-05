@@ -9,7 +9,7 @@ import { UserProvider } from "./context/UserContext";
 
 
 createRoot(document.getElementById("root")!).render(
-  <TonConnectUIProvider manifestUrl='https://jade-imperial-hawk-534.mypinata.cloud/ipfs/bafybeigkixu527m6rtupe3yimytsedkhroqve4bucaru6rrvkzw3ptcle4/'>
+  <TonConnectUIProvider manifestUrl='https://jade-imperial-hawk-534.mypinata.cloud/ipfs/bafybeiec6ililuj3yahb6wizc4gczrdbutwoyznj4ue5hkq7vr7fpkcpai/'>
     <UserProvider>
         <StrictMode>
           <App />
